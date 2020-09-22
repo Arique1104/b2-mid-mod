@@ -1,6 +1,11 @@
 <h1><%= @surgery.title %></h1>
 <br>
 <p>Operating Room: <%= @surgery.operating_room %></p>
+<p>Doctor(s):
+<% @surgery.doctors.each do |doctor| %>
+ <li><%= doctor.name %></li>
+</p>
+<% end %>
 
 <section id='surgery-<%= @surgery.id%>'>
  <h2>Other surgeries happening this day of the week:</h2>
@@ -8,4 +13,13 @@
  <%  @surgery.additional_surgeries_today.each do |surgery| %>
   <li> <%= surgery %></li>
  <% end %>
+</section>
+
+<section id='add_doctor-<%= @surgery.id%>'>
+<p> Add A Doctor To This Surgery </p>
+<%= form_tag "/surgeries/#{@surgery.id}/add_doctor" do%>
+<%= text_field_tag :doctor_name %>
+<%= submit_tag "Add Doctor" %>
+<% end %>
+
 </section>
