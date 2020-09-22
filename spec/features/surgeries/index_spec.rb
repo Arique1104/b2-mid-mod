@@ -16,11 +16,11 @@ RSpec.describe "When I visit a surgery’s index page (‘/surgeries’)" do
     @surgery_2 = Surgery.create!(title: "Open Heart Surgery", week_day: "Tuesday", operating_room: "W319")
 
 
-    DoctorSurgeries.create!(doctor: @doctor_1, surgery: @surgery_1)
+    DoctorSurgery.create!(doctor: @doctor_1, surgery: @surgery_1)
 
-    DoctorSurgeries.create!(doctor: @doctor_1, surgery: @surgery_2)
+    DoctorSurgery.create!(doctor: @doctor_1, surgery: @surgery_2)
 
-    DoctorSurgeries.create!(doctor: @doctor_2, surgery: @surgery_2)
+    DoctorSurgery.create!(doctor: @doctor_2, surgery: @surgery_2)
 
 
     visit "/surgeries"
