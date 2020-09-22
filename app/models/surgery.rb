@@ -1,7 +1,6 @@
 class Surgery < ApplicationRecord
- #attr_reader
-  #def initialize(*arg)
+  validates_presence_of :title, :week_day, :operating_room
 
-  #end
-
+  has_many :doctor_surgeries
+  has_many :doctors, through: :doctor_surgeries
 end
