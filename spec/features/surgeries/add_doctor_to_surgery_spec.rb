@@ -1,12 +1,3 @@
-# User Story 3, Add a Doctor to a Surgery
-# As a visitor
-# When I visit a surgery's show page
-# I see a field with instructions to "Add A Doctor To This Surgery"
-# When I input the name of a Doctor into that field
-# And I click submit
-# I'm taken back to that surgery's show page
-# And I see the name of that doctor listed on the page
-# (Note: you do not need to handle any sad paths)
 require "rails_helper"
 
 RSpec.describe "Adding a doctor to a surgery" do
@@ -18,10 +9,17 @@ RSpec.describe "Adding a doctor to a surgery" do
 
     @surgery_1 = Surgery.create!(title: "Aortal Heart Surgery", week_day: "Monday", operating_room: "N204")
     @surgery_2 = Surgery.create!(title: "Open Heart Surgery", week_day: "Tuesday", operating_room: "W319")
+    @surgery_3 = Surgery.create!(title: "Stent Heart Surgery", week_day: "Monday", operating_room: "N204")
+    @surgery_4 = Surgery.create!(title: "Balloon Heart Surgery", week_day: "Monday", operating_room: "N204")
+
 
     DoctorSurgery.create!(doctor: @doctor_1, surgery: @surgery_1)
     DoctorSurgery.create!(doctor: @doctor_1, surgery: @surgery_2)
     DoctorSurgery.create!(doctor: @doctor_2, surgery: @surgery_2)
+    DoctorSurgery.create!(doctor: @doctor_2, surgery: @surgery_3)
+    DoctorSurgery.create!(doctor: @doctor_1, surgery: @surgery_4)
+    DoctorSurgery.create!(doctor: @doctor_2, surgery: @surgery_4)
+
 
     visit "/surgeries/#{@surgery_1.id}"
 
@@ -39,6 +37,5 @@ RSpec.describe "Adding a doctor to a surgery" do
 
     expect(page).to have_content("#{@doctor_1.name}")
     expect(page).to have_content("#{@doctor_2.name}")
-
   end
 end
